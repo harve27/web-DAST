@@ -16,6 +16,8 @@
 
 <body onload="init()" class="start_body">
 
+
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
         <!--  Show this only on mobile to medium screens  -->
@@ -31,10 +33,10 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="start.html">Home</a>
+                    <a class="nav-link active" href="start.html">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
+                    <a class="nav-link" href="about.html">About </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="gallery.html">Gallery</a>
@@ -63,34 +65,32 @@
         </div>
     </nav>
 
-    <div class="card">
+    <h1 style="text-align: center; padding: 10px;">Examples of Submissions</h1>
 
-        <form>
-            <label for="Age">Age:</label>
-            <input type="text" name="age" id="age">
-        </form>
-        <form>
-            <label for="Gender">Gender:</label>
-            <input type="radio" id="male" name="gender" value="male">
-            <label for="male">Male |</label>
-            <input type="radio" id="female" name="gender" value="female">
-            <label for="female">Female |</label>
-            <input type="radio" id="other" name="gender" value="other">
-            <label for="other">Other</label>
-        </form>
-        <form>
-            <label for="Town">Town:</label>
-            <input type="text" name="town" id="town">
-        </form>
-        <form>
-            <label for="Country">Country:</label>
-            <input type="text" name="country" id="country">
-        </form>
-        <form>
-            <label for="Ethnicity">Ethnicity:</label>
-            <input type="text" name="ethnicity" id="ethnicity">
-        </form>
+    <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/DAST_2_1983.jpg" alt="drawing"
+            class="imgcentered">
+        <div class="container">
+            <p>Drawings from the first DAST study ever made!</p>
+        </div>
     </div>
+
+    <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Female_scientist_from_DAST.png" alt="drawing"
+            class="imgcentered">
+        <div class="container">
+            <p>Drawings from the first DAST study ever made!</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Draw_a_Scientist_Test_%28Chambers%2C_1983%29.jpg"
+            alt="drawing" class="imgcentered">
+        <div class="container">
+            <p>Drawings from the first DAST study ever made!</p>
+        </div>
+    </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
