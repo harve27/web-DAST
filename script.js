@@ -51,10 +51,15 @@ function color(obj) {
         case "white":
             x = "white";
             break;
+        case "skin1":
+            x = "#FFDBAC";
+            break;
+        case "skin2":
+            x = "#C68642";
+            break;
+        default:
+            x = "black";
     }
-    if (x == "white") y = 14;
-    else y = 2;
-
 }
 
 function draw() {
@@ -68,19 +73,33 @@ function draw() {
 }
 
 function erase() {
-    var m = confirm("Want to clear");
+    var m = confirm("Are you sure you want to clear this picture?");
     if (m) {
         ctx.clearRect(0, 0, w, h);
-        document.getElementById("canvasimg").style.display = "none";
     }
 }
 
+//function save() {
+   //   document.getElementById("canvasimg").style.border = "2px solid";
+   // var dataURL = canvas.toDataURL();
+   //   document.getElementById("canvasimg").src = dataURL;
+   //   document.getElementById("canvasimg").style.display = "inline";
+   //   console.log(dataURL)
+//}
+
 function save() {
-    document.getElementById("canvasimg").style.border = "2px solid";
+    //document.getElementById("canvasimg").style.border = "2px solid";
     var dataURL = canvas.toDataURL();
-    document.getElementById("canvasimg").src = dataURL;
-    document.getElementById("canvasimg").style.display = "inline";
+    window.location.href = "form.html";
+
+    /**
+     * With more time, this team would implement a database server that would collect 
+     * the images drawn and display them on a galllery. 
+     */
 }
+
+
+
 
 function findxy(res, e) {
     if (res == 'down') {
