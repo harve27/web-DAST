@@ -1,45 +1,114 @@
-const paintCanvas = document.querySelector( '.js-paint' );
-const context = paintCanvas.getContext( '2d' );
-context.lineCap = 'round';
+var canvas, ctx, flag = false,
+    prevX = 0,
+    currX = 0,
+    prevY = 0,
+    currY = 0,
+    dot_flag = false;
 
-const colorPicker = document.querySelector( '.js-color-picker');
+var x = "black",
+    y = 2;
 
-colorPicker.addEventListener( 'change', event => {
-    context.strokeStyle = event.target.value; 
-} );
+function init() {
+    canvas = document.getElementById('can');
+    ctx = canvas.getContext("2d");
+    w = canvas.width;
+    h = canvas.height;
 
-const lineWidthRange = document.querySelector( '.js-line-range' );
-const lineWidthLabel = document.querySelector( '.js-range-value' );
-
-lineWidthRange.addEventListener( 'input', event => {
-    const width = event.target.value;
-    lineWidthLabel.innerHTML = width;
-    context.lineWidth = width;
-} );
-
-let x = 0, y = 0;
-let isMouseDown = false;
-
-const stopDrawing = () => { isMouseDown = false; }
-const startDrawing = event => {
-    isMouseDown = true;   
-   [x, y] = [event.offsetX, event.offsetY];  
+    canvas.addEventListener("mousemove", function (e) {
+        findxy('move', e)
+    }, false);
+    canvas.addEventListener("mousedown", function (e) {
+        findxy('down', e)
+    }, false);
+    canvas.addEventListener("mouseup", function (e) {
+        findxy('up', e)
+    }, false);
+    canvas.addEventListener("mouseout", function (e) {
+        findxy('out', e)
+    }, false);
 }
-const drawLine = event => {
-    if ( isMouseDown ) {
-        const newX = event.offsetX;
-        const newY = event.offsetY;
-        context.beginPath();
-        context.moveTo( x, y );
-        context.lineTo( newX, newY );
-        context.stroke();
-        //[x, y] = [newX, newY];
-        x = newX;
-        y = newY;
+
+function color(obj) {
+    switch (obj.id) {
+        case "green":
+            x = "green";
+            break;
+        case "blue":
+            x = "blue";
+            break;
+        case "red":
+            x = "red";
+            break;
+        case "yellow":
+            x = "yellow";
+            break;
+        case "orange":
+            x = "orange";
+            break;
+        case "black":
+            x = "black";
+            break;
+        case "white":
+            x = "white";
+            break;
+    }
+    if (x == "white") y = 14;
+    else y = 2;
+
+}
+
+function draw() {
+    ctx.beginPath();
+    ctx.moveTo(prevX, prevY);
+    ctx.lineTo(currX, currY);
+    ctx.strokeStyle = x;
+    ctx.lineWidth = y;
+    ctx.stroke();
+    ctx.closePath();
+}
+
+function erase() {
+    var m = confirm("Want to clear");
+    if (m) {
+        ctx.clearRect(0, 0, w, h);
+        document.getElementById("canvasimg").style.display = "none";
     }
 }
 
-paintCanvas.addEventListener( 'mousedown', startDrawing );
-paintCanvas.addEventListener( 'mousemove', drawLine );
-paintCanvas.addEventListener( 'mouseup', stopDrawing );
-paintCanvas.addEventListener( 'mouseout', stopDrawing );
+function save() {
+    document.getElementById("canvasimg").style.border = "2px solid";
+    var dataURL = canvas.toDataURL();
+    document.getElementById("canvasimg").src = dataURL;
+    document.getElementById("canvasimg").style.display = "inline";
+}
+
+function findxy(res, e) {
+    if (res == 'down') {
+        prevX = currX;
+        prevY = currY;
+        currX = e.clientX - canvas.offsetLeft;
+        currY = e.clientY - canvas.offsetTop;
+
+        flag = true;
+        dot_flag = true;
+        if (dot_flag) {
+            ctx.beginPath();
+            ctx.fillStyle = x;
+            ctx.fillRect(currX, currY, 2, 2);
+            ctx.closePath();
+            dot_flag = false;
+        }
+    }
+    if (res == 'up' || res == "out") {
+        flag = false;
+    }
+    if (res == 'move') {
+        if (flag) {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+            draw();
+        }
+    }
+}
