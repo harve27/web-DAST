@@ -79,27 +79,17 @@ function erase() {
     }
 }
 
-//function save() {
-   //   document.getElementById("canvasimg").style.border = "2px solid";
-   // var dataURL = canvas.toDataURL();
-   //   document.getElementById("canvasimg").src = dataURL;
-   //   document.getElementById("canvasimg").style.display = "inline";
-   //   console.log(dataURL)
-//}
+
 
 function save() {
     //document.getElementById("canvasimg").style.border = "2px solid";
     var dataURL = canvas.toDataURL();
     window.location.href = "form.html";
-
     /**
      * With more time, this team would implement a database server that would collect 
      * the images drawn and display them on a galllery. 
      */
 }
-
-
-
 
 function findxy(res, e) {
     if (res == 'down') {

@@ -64,8 +64,6 @@ input[type=button]{
 }
 
 
-/**  style="position:absolute;top:15%;left:1%;border:2px solid;" */
-
 body {
     background: rgb(225, 210, 233);
     background-position: center;
@@ -86,3 +84,4 @@ body {
     margin-right: auto;
     width: 20%;
 }
+
